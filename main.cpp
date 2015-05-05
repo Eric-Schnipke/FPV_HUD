@@ -13,8 +13,8 @@
 
 /* Camera feed frame titles */
 const cv::String FRAME_TITLE1 = "BGR Frame";
-const cv::String FRAME_TITLE2 = "HSV Frame";
-const cv::String FRAME_TITLE3 = "Binary Frame";
+const cv::String FRAME_TITLE2 = "HLS Frame";
+const cv::String FRAME_TITLE3 = "Tracking Frame";
 
 const unsigned short int CAMERA_ADDRESS = 0;
 const unsigned short int FRAME_DELAY = 1;
@@ -40,9 +40,12 @@ int main(int argc, const char * argv[])
         thisCamera.getFrame(frame);
         thisCamera.blurFrame(frame);
         thisCamera.showFrame(FRAME_TITLE1, frame);
-        thisCamera.convertFrameToHsv(frame);
+        thisCamera.convertFrameToHls(frame);
         thisCamera.showFrame(FRAME_TITLE2, frame);
-        thisCamera.convertHsvFrametoBinary(frame);
+        thisCamera.filterHlsFrameToBinary(frame);
+        thisCamera.reduceStatic(frame);
+        thisCamera.showFrame("Binary Image", frame);
+        thisCamera.trackObjects(frame);
         thisCamera.showFrame(FRAME_TITLE3, frame);
         
         /* capture program control character */
@@ -54,4 +57,3 @@ int main(int argc, const char * argv[])
     
     return 0;
 }
-
