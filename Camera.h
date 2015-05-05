@@ -34,14 +34,14 @@ public:
     void getFrame(cv::Mat&);
     
     /*************************************************\
-     * Summary: Converts camera feed from BGR to HSV *
+     * Summary: Converts camera feed from BGR to HLS *
     \*************************************************/
-    void convertFrameToHsv(cv::Mat&);
+    void convertFrameToHls(cv::Mat&);
     
     /****************************************************\
-     * Summary: Converts camera feed from HSV to Binary *
-     \****************************************************/
-    void convertHsvFrametoBinary(cv::Mat&);
+     * Summary: Converts camera feed from HLS to Binary *
+    \****************************************************/
+    void filterHlsFrameToBinary(cv::Mat&);
     
     /********************************\
      * Summary: Inverts camera feed *
@@ -52,6 +52,16 @@ public:
      * Summary: Blurs camera feed *
     \********************************/
     void blurFrame(cv::Mat&);
+    
+    /*******************************************************************\
+     * Summary: Reduces static in frame using morphological operations *
+    \*******************************************************************/
+    void reduceStatic(cv::Mat&);
+    
+    /*****************************\
+     * Summary: Tracks an object *
+    \*****************************/
+    void trackObjects(cv::Mat&);
     
     /****************************************************\
      * Summary: Displays buffered camera frame onscreen *
